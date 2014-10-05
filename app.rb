@@ -41,6 +41,7 @@ end
 
 def validate(id)
   id = 1 if id.to_i < 1 or id.to_i > MAX_ONISAMA
+  id
 end
 
 def create_url(id)
