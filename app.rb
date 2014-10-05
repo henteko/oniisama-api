@@ -9,20 +9,6 @@ get '/' do
   erb :index
 end
 
-get '/images' do
-  @id = get_random_id
-  @url = create_url(@id)
-
-  erb :images
-end
-
-get '/images/:id' do |id|
-  @id = validate(id)
-  @url = create_url(@id)
-
-  erb :images
-end
-
 get '/api' do
   id = get_random_id
 
