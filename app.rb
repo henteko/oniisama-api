@@ -9,16 +9,38 @@ get '/' do
   erb :index
 end
 
+get '/images' do
+  @id = get_random_id
+  @url = create_url(@id)
+
+  erb :images
+end
+
+get '/images/:id' do |id|
+  @id = validate(id)
+  @url = create_url(@id)
+
+  erb :images
+end
+
 get '/api' do
-  id = rand(MAX_ONISAMA) + 1
+  id = get_random_id
 
   get_json(create_url(id), id)
 end
 
 get '/api/:id' do |id|
-  id = 1 if id.to_i < 1 or id.to_i > MAX_ONISAMA
+  id = validate(id)
 
   get_json(create_url(id), id)
+end
+
+def get_random_id
+  id = rand(MAX_ONISAMA) + 1
+end
+
+def validate(id)
+  id = 1 if id.to_i < 1 or id.to_i > MAX_ONISAMA
 end
 
 def create_url(id)
